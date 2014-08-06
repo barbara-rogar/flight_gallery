@@ -6,13 +6,12 @@ define(function (require) {
   return defineComponent(imageContent);
 
   function imageContent() {
-    this.setImage = function (e, data) {
-      //this.$node.style.background = data.imageurl;
-      document.getElementById("imageslider").style.background = data.imageurl;
-    }
 
     this.after('initialize', function () {
-      this.on(document, 'dataImage', this.setImage);
+      this.on(document, 'dataImage', function (e, data) {
+                                        this.node.style.background = data.imageurl;
+                                        this.trigger('buttonsNeedNewValue',{number: data.number});
+                                      });
     });
   }
 });

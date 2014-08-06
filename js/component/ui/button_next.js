@@ -10,17 +10,19 @@ define(function (require) {
       itemSelector: '.button_next'
     });
 
-    this.requestImageChange = function (e) {
-      this.trigger('sliderNeedsNextImage', {
-        number: 2  //TODO get number from hidden value on this button (consider using something other than button)
-      });
-    }
 
     this.after('initialize', function () {
       this.on('click', {
-        itemSelector: this.requestImageChange
+        itemSelector: function (e) {
+                        this.trigger('sliderNeedsNextImage', {
+                          number: this.node.value
+                        });
+                      }
       });
       
+      this.on(document, 'buttonsNeedNewValue',function(e,data){
+                                       this.node.value = data.number;
+                                    });
     });
   }
 });

@@ -6,15 +6,26 @@ define(function (require) {
   return defineComponent(image);
 
   function image() {
-    this.changeSection = function (e, data) {
-      this.trigger('dataImage', {
-        number: data.number,
-        imageurl: "url('images/image_" + data.number + ".jpg')"
-      });
-    }
 
     this.after('initialize', function () {
-      this.on('sliderNeedsNextImage', this.changeSection);
+      this.on('sliderNeedsNextImage', function (e, data) {
+                                        if (data.number == 4) {
+                                          data.number = 0;
+                                        }
+                                        this.trigger('dataImage', {
+                                          number: parseInt(data.number)+1,
+                                          imageurl: "url('images/image_" + (parseInt(data.number)+1) + ".jpg')"
+                                        });
+                                      });
+      this.on('sliderNeedsPreviousImage', function (e, data) {
+                                        if (data.number == 1) {
+                                          data.number = 5;
+                                        }
+                                        this.trigger('dataImage', {
+                                          number: parseInt(data.number)-1,
+                                          imageurl: "url('images/image_" + (parseInt(data.number)-1) + ".jpg')"
+                                        });
+                                      });
     });
   }
 });

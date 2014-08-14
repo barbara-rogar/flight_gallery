@@ -1,13 +1,11 @@
 define(function (require) {
   
-  var buttonNextUI = require('component/ui/button_next');
-  var buttonPreviousUI = require('component/ui/button_previous');
-  var imageContentUI = require('component/ui/image_content');
+  var buttonsUI = require('component/ui/buttons');
+  var imageContentUI = require('component/ui/slider');
   var sliderImageData = require('component/data/image_section');
 
   function initialize() {    
-    buttonNextUI.attachTo('.button_next');
-    buttonPreviousUI.attachTo('.button_previous');
+    buttonsUI.attachTo('.btn');
     imageContentUI.attachTo('.imageslider');
     sliderImageData.attachTo(document);
   }

@@ -8,24 +8,19 @@ define(function (require) {
   function image() {
 
     this.after('initialize', function () {
-      this.on('sliderNeedsNextImage', function (e, data) {
-                                        if (data.number == 4) {
-                                          data.number = 0;
-                                        }
-                                        this.trigger('dataImage', {
-                                          number: parseInt(data.number)+1,
-                                          imageurl: "url('images/image_" + (parseInt(data.number)+1) + ".jpg')"
-                                        });
-                                      });
-      this.on('sliderNeedsPreviousImage', function (e, data) {
-                                        if (data.number == 1) {
-                                          data.number = 5;
-                                        }
-                                        this.trigger('dataImage', {
-                                          number: parseInt(data.number)-1,
-                                          imageurl: "url('images/image_" + (parseInt(data.number)-1) + ".jpg')"
-                                        });
-                                      });
+      var currentImage = 1;
+      this.on('gallery:Move', function (e, data) {
+        currentImage = currentImage+parseInt(data.offset);
+        if (parseInt(currentImage) == 5) {
+          currentImage = 1;
+        }
+        if (parseInt(currentImage)==0) {
+          currentImage = 4;
+        }
+        this.trigger('gallery:ImageReady', {
+          imageurl: "url('images/image_" + (parseInt(currentImage)) + ".jpg')"
+        });
+      });
     });
   }
 });

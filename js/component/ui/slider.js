@@ -10,6 +10,7 @@ define(function (require) {
     this.after('initialize', function () {
       this.on(document, 'gallery:ImageReady', function (e, data) {
         this.node.style.background = data.imageurl;
+        this.node.attr
       });
     });
   }

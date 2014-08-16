@@ -8,15 +8,8 @@ body {
   width:100%;
 }
 
-.previous-btn {
-  float:left;
-  margin-left:20%;
-}
-
-.next-btn {
-  float:right;
-  margin-right:20%;
-}
+.previous-btn{float:left;margin-left:20%}
+.next-btn{float:right;margin-right:20%}
 
 .image-holder {
   width:100%;

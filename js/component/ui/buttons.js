@@ -1,7 +1,8 @@
 define(function (require) {
-  'use strict';
 
-  var defineComponent = require('flight/lib/component');
+
+  var defineComponent = require('flight/lib/component'),
+      markup = require('text!button.html'); // PROBLEM
 
   return defineComponent(nextImage);
 
@@ -13,6 +14,7 @@ define(function (require) {
 
 
     this.after('initialize', function () {
+      this.$node.html(markup);
       
       this.on('click', {
         $itemSelectorPrev: function (e) {

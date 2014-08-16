@@ -8,6 +8,8 @@ define(function (require) {
   function image() {
 
     this.after('initialize', function () {
+      
+      
       var currentImage = 1;
       this.on('gallery:Move', function (e, data) {
         currentImage = currentImage+parseInt(data.offset);
@@ -18,7 +20,8 @@ define(function (require) {
           currentImage = 4;
         }
         this.trigger('gallery:ImageReady', {
-          imageurl: "url('images/image_" + (parseInt(currentImage)) + ".jpg')"
+          imageurl: "url('images/image_" + (parseInt(currentImage)) + ".jpg')",
+          text: data.text
         });
       });
     });
